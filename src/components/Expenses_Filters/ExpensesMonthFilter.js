@@ -16,11 +16,11 @@ function ExpensesMonthFilter(props) {
     "November",
     "December"
   ];
-  const [enteredMonth, setEnteredMonth] = useState("All");
+  //onst [enteredMonth, setEnteredMonth] = useState("All");
 
   function monthDropdownChangeHandler(event) {
     const selectedMonth = event.target.value;
-    setEnteredMonth(selectedMonth);
+    //setEnteredMonth(selectedMonth);
     props.onMonthChangeFilter(selectedMonth);
   }
 
