@@ -9,7 +9,7 @@ function ExpenseList(props) {
     <ul className="expense-list">
       {props.item.map((ele) => (
         <ExpenseItems
-          key={ele.key}
+          key={ele.id}
           title={ele.title}
           amount={ele.amount}
           date={ele.date}

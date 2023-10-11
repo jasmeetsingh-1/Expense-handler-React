@@ -21,6 +21,7 @@ function ExpensesChart(props) {
   props.expenses.map((ele) => {
     const eleMonth = new Date(ele.date).getMonth();
     datapointsArray[eleMonth].value += ele.amount;
+    return null;
   });
 
   return <Chart datapoints={datapointsArray} />;

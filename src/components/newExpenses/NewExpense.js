@@ -11,11 +11,13 @@ function NewExpense(props) {
   function saveExpenseDataHandler(enteredExpenseData) {
     let titleValidator = true;
     let amountValidator = true;
-
+    let dateValidator=true;
+    
     if (enteredExpenseData.title.trim().length === 0) titleValidator = false;
     if (enteredExpenseData.amount <= 0) amountValidator = false;
+    if(isNaN(enteredExpenseData.date)) dateValidator=false;
 
-    if (titleValidator && amountValidator) {
+    if (titleValidator && amountValidator && dateValidator) {
       const expenseData = {
         ...enteredExpenseData,
       };
@@ -33,6 +35,12 @@ function NewExpense(props) {
           title: "Invalid Input",
           message: "Enter valid amount! (>0) ",
         });
+      }
+      else if(!dateValidator){
+        setErrorMessage({
+          title: "Invalid Input",
+          message: "Enter valid date!"
+        })
       }
     }
   }

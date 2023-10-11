@@ -19,22 +19,19 @@ function ExpensesMonthFilter(props) {
   const [enteredMonth, setEnteredMonth] = useState("All");
 
   function monthDropdownChangeHandler(event) {
-    setEnteredMonth(event.target.value);
+    const selectedMonth = event.target.value;
+    setEnteredMonth(selectedMonth);
+    props.onMonthChangeFilter(selectedMonth);
   }
 
-  props.onMonthChangeFilter(enteredMonth);
   return (
     <div className="expenses-filter">
       <div className="expenses-filter__control">
         <label>Filter by Month</label>
         <select onChange={monthDropdownChangeHandler}>
-          {monthOptions.map((ele) => {
-            return <option value={ele}>{ele}</option>;
+          {monthOptions.map((ele, index) => {
+            return <option key={index} value={ele}>{ele}</option>;
           })}
-          {/* <option value="2022">2022</option>
-          <option value="2021">2021</option>
-          <option value="2020">2020</option>
-          <option value="2019">2019</option> */}
         </select>
       </div>
     </div>

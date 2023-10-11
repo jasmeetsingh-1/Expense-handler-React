@@ -36,7 +36,7 @@ function ExpenseForm(props) {
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label for="titleInput">Title</label>
+          <label htmlFor="titleInput">Title</label>
           <input
             type="text"
             id="titleInput"
@@ -47,7 +47,7 @@ function ExpenseForm(props) {
           />
         </div>
         <div className="new-expense__control">
-          <label for="amountInput">Amount (₹)</label>
+          <label htmlFor="amountInput">Amount (₹)</label>
           <input
             type="number"
             step="0.01"
@@ -59,7 +59,7 @@ function ExpenseForm(props) {
           />
         </div>
         <div className="new-expense__control">
-          <label for="dateInput">Date</label>
+          <label htmlFor="dateInput">Date</label>
           <input
             type="date"
             min="1800-01-01"
