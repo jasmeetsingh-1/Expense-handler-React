@@ -1,7 +1,6 @@
 import { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
-import ErrorPopUp from "../popUps/ErrorPopUp";
-import SucessPopUp from "../popUps/successPopUp" ;
+import PopUp from "../popUps/ErrorPopUp";
 import "../css_files/NewExpenses_css/NewExpense.css";
 
 function NewExpense(props) {
@@ -53,13 +52,13 @@ function NewExpense(props) {
   return (
     <div className="new-expense">
       {errorMessage && (
-        <ErrorPopUp
+        <PopUp
           onclicked={buttonIsClicked}
           title={errorMessage.title}
           message={errorMessage.message}
         />
       )}
-      {sucess && <SucessPopUp onclicked={buttonIsClicked} title="Expense Recorded" message="Your expenses is successfully recorder"/>}
+      {sucess && <PopUp onclicked={buttonIsClicked} title="Expense Recorded" message="Your expenses is successfully recorded"/>}
       <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
     </div>
   );

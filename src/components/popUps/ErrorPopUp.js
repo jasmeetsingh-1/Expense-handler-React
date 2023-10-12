@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import Card from "../Card";
 import "../css_files/PopUps_css/errorPopUp.css";
 import React from "react";
-function ErrorPopUp(props) {
+function PopUp(props) {
   function Backdrop(props) {
     return <div className="backdrop" onClick={buttonClicked}></div>;
   }
@@ -17,7 +17,7 @@ function ErrorPopUp(props) {
           <p>{props.message}</p>
         </div>
         <footer className="actions">
-          <button type="button" onClick={buttonClicked}>
+          <button className="buttonPopUp" type="button" onClick={buttonClicked}>
             Okay
           </button>
         </footer>
@@ -42,4 +42,4 @@ function ErrorPopUp(props) {
   );
 }
 
-export default ErrorPopUp;
+export default PopUp;

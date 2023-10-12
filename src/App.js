@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+
+import Header from "./components/Header";
 import "./styles.css";
 import ExpenseHolder from "./components/ExpenseHolder";
 import NewExpense from "./components/newExpenses/NewExpense";
@@ -30,11 +32,21 @@ export default function App() {
   const [expenses, setExpenses] = useState(dummyExpenses);
   const [yearArray, setYearArray] = useState(dummyYearArray);
 
+  function yearCheck(yearEntered){
+    let flag=true;
+    yearArray.map((ele)=>{
+      if(ele===yearEntered) flag=false;
+    })
+    return flag;
+  }
+
   function addExpenseHandler(expense) {
     let dateYear = expense.date.getFullYear().toString();
-    setYearArray((prevYearState) => {
+    if(yearCheck(dateYear)){
+      setYearArray((prevYearState) => {
       return [...prevYearState, dateYear];
     });
+    }   
 
     setExpenses((prevState) => {
       return [...prevState, expense];
@@ -43,7 +55,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Expense Handler</h1>
+      <Header>Expense Handler</Header>
       <NewExpense onAddExpenses={addExpenseHandler} />
       <ExpenseHolder yearsList={yearArray} items={expenses} />
     </div>
