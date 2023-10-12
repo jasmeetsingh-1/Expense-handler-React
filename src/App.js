@@ -36,6 +36,7 @@ export default function App() {
     let flag=true;
     yearArray.map((ele)=>{
       if(ele===yearEntered) flag=false;
+      return null;
     })
     return flag;
   }
