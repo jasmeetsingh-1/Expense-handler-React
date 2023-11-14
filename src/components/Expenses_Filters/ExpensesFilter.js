@@ -21,15 +21,11 @@ function ExpensesYearFilter(props) {
       <div className="expenses-filter__control">
         <label>Filter by year</label>
         <select value={enteredYear} onChange={dropdownChangeHandler}>
-          {yearsDataToInt.map((ele) => {
-            if (ele) {
-              return (
-                <option key={ele} value={ele}>
-                  {ele}
-                </option>
-              );
-            }
-          })}
+          {yearsDataToInt.map((ele) => (
+            <option key={ele} value={ele}>
+              {ele}
+            </option>
+          ))}
         </select>
       </div>
     </div>
