@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import "../css_files/NewExpenses_css/ExpenseForm.css";
 function ExpenseForm(props) {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredTitle, setEnteredTitle] = useState("qw");
+  const [enteredAmount, setEnteredAmount] = useState("12");
   const [enteredDate, setEnteredDate] = useState("");
 
   function inputHandler(id, value) {

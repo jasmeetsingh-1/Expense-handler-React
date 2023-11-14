@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import "../css_files/ExpenseFilter.css";
 
 function ExpensesYearFilter(props) {
-  const [enteredYear, setEnteredYear] = useState("2019");
+  const [enteredYear, setEnteredYear] = useState("2021");
   const [yearsDataToInt, setYearsDataToInt] = useState([]);
 
   useEffect(() => {
@@ -23,11 +22,13 @@ function ExpensesYearFilter(props) {
         <label>Filter by year</label>
         <select value={enteredYear} onChange={dropdownChangeHandler}>
           {yearsDataToInt.map((ele) => {
-            return (
-              <option key={ele} value={ele}>
-                {ele}
-              </option>
-            );
+            if (ele) {
+              return (
+                <option key={ele} value={ele}>
+                  {ele}
+                </option>
+              );
+            }
           })}
         </select>
       </div>
