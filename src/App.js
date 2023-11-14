@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "./components/Header";
@@ -6,29 +6,8 @@ import "./styles.css";
 import ExpenseHolder from "./components/ExpenseHolder";
 import NewExpense from "./components/newExpenses/NewExpense";
 
-// const dummyExpenses = [
-//   {
-//     id: "e1",
-//     title: "Toilet Paper",
-//     amount: 94.12,
-//     date: new Date(2020, 7, 14),
-//   },
-//   { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-//   { id: "e3", title: "book", amount: 30.99, date: new Date(2022, 3, 4) },
-//   {
-//     id: "e4",
-//     title: "Car Insurance",
-//     amount: 294.67,
-//     date: new Date(2020, 2, 28),
-//   },
-//   {
-//     id: "e5",
-//     title: "New Desk (Wooden)",
-//     amount: 450,
-//     date: new Date(2021, 5, 12),
-//   },
-// ];
 let dummyYearArray = ["2022", "2021", "2020", "2019"];
+
 export default function App() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -37,17 +16,14 @@ export default function App() {
     return { ...item, date: new Date(item.date) };
   });
 
-  // const [expenses, setExpenses] = useState(dummyExpenses);
   const [yearArray, setYearArray] = useState(dummyYearArray);
 
-  function yearCheck(yearEntered) {
-    let flag = true;
-    yearArray.map((ele) => {
-      if (ele === yearEntered) flag = false;
-      return null;
-    });
-    return flag;
-  }
+  const yearCheck = useCallback(
+    (yearEntered) => {
+      return !yearArray.includes(yearEntered);
+    },
+    [yearArray]
+  );
 
   function addExpenseHandler(expense) {
     let dateYear = expense.date.getFullYear().toString();
@@ -58,31 +34,26 @@ export default function App() {
     }
 
     dispatch({ type: "add", data: expense });
-    // setExpenses((prevState) => {
-    //   return [...prevState, expense];
-    // });
   }
 
   useEffect(() => {
-    //check here for the expenseArray
-    {
-      const yearsToAdd = expenseArray.map((item) => {
-        if (yearCheck(item.date.getFullYear().toString()))
-          return item.date.getFullYear().toString();
-      });
+    const yearsToAdd = expenseArray.map((item) => {
+      if (yearCheck(item.date.getFullYear().toString())) {
+        return item.date.getFullYear().toString();
+      }
+      return null; // Ensure a value is returned in all cases
+    });
 
-      yearsToAdd.map((item) => {
-        if (item) {
-          if (yearCheck(item)) {
-            setYearArray((prevYearState) => {
-              return [...prevYearState, item];
-            });
-          }
+    yearsToAdd.forEach((item) => {
+      if (item) {
+        if (yearCheck(item)) {
+          setYearArray((prevYearState) => {
+            return [...prevYearState, item];
+          });
         }
-      });
-      console.log("years to add >>>>", yearsToAdd);
-    }
-    console.log("app expenseArray>>>>>>>>>", expenseArray);
+      }
+    });
+    console.log("years to add >>>>", yearsToAdd);
   }, [expenseArray, yearCheck]);
 
   return (
