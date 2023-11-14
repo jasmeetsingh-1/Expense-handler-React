@@ -28,8 +28,6 @@ function reducerFunction(state = initalExpenses, action) {
       return { ...item, date: new Date(item.date) };
     });
     const newItems = [...updatedItems, action.data];
-    // console.log("updatedItem>>>>>>>", updatedItems);
-    // console.log("newitem>>>>>>>", newItems);
     return newItems;
   }
   return state;

@@ -53,7 +53,6 @@ export default function App() {
         }
       }
     });
-    console.log("years to add >>>>", yearsToAdd);
   }, [expenseArray, yearCheck]);
 
   return (

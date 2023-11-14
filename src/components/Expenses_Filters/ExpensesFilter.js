@@ -6,11 +6,16 @@ function ExpensesYearFilter(props) {
   const [yearsDataToInt, setYearsDataToInt] = useState([]);
 
   useEffect(() => {
-    let yearsToInt = props.yearsData.map((ele) => parseInt(ele, 10));
-    yearsToInt = yearsToInt.sort((a, b) => a - b);
-    setYearsDataToInt(yearsToInt);
-  }, [props.yearsData]);
+    const sortedArray = [...props.yearsData]
+      .filter((value) => !isNaN(value))
+      .sort((a, b) => a - b);
 
+    const uniqueArray = sortedArray.filter((value, index, self) => {
+      return self.indexOf(value) === index;
+    });
+
+    setYearsDataToInt(uniqueArray);
+  }, [props.yearsData]);
   function dropdownChangeHandler(event) {
     setEnteredYear(event.target.value);
     props.onChangeFilter(event.target.value);
