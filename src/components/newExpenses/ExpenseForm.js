@@ -50,7 +50,7 @@ function ExpenseForm(props) {
           <label htmlFor="amountInput">Amount (₹)</label>
           <input
             type="number"
-            step="0.01"
+            step="1"
             id="amountInput"
             value={enteredAmount}
             onChange={(event) => {
